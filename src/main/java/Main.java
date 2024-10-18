@@ -4,100 +4,59 @@ public class Main {
 
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
+    Calculator calculator = new Calculator();  // Create an instance of Calculator
+    String input;
 
-    // Read the command from the user
-    System.out.println("Enter a command (e.g., add 1 3):");
-    String input = scanner.nextLine();
-    String[] inputParts = input.split(" ");
+    // Start an infinite loop until the user enters "quit"
+    while (true) {
+      System.out.println("Enter a command (e.g., add 1 3) or type 'quit' to exit:");
+      input = scanner.nextLine();
 
-    // Extract the command and numbers
-    String command = inputParts[0];
-    int num1 = Integer.parseInt(inputParts[1]);
+      // Check if the user wants to quit
+      if (input.equalsIgnoreCase("quit")) {
+        System.out.println("Exiting the program...");
+        break; // Exit the loop and terminate the program
+      }
 
-    // Switch case based on the command
-    switch (command) {
-      case "add":
-        int num2 = Integer.parseInt(inputParts[2]);
-        System.out.println(add(num1, num2));
-        break;
+      String[] inputParts = input.split(" ");
+      String command = inputParts[0];
+      int num1 = Integer.parseInt(inputParts[1]);
 
-      case "subtract":
-        num2 = Integer.parseInt(inputParts[2]);
-        System.out.println(subtract(num1, num2));
-        break;
+      // Process the command using a switch statement
+      switch (command) {
+        case "add":
+          int num2 = Integer.parseInt(inputParts[2]);
+          System.out.println(calculator.add(num1, num2));  // Use calculator instance
+          break;
 
-      case "multiply":
-        num2 = Integer.parseInt(inputParts[2]);
-        System.out.println(multiply(num1, num2));
-        break;
+        case "subtract":
+          num2 = Integer.parseInt(inputParts[2]);
+          System.out.println(calculator.subtract(num1, num2));
+          break;
 
-      case "divide":
-        num2 = Integer.parseInt(inputParts[2]);
-        System.out.println(divide(num1, num2));
-        break;
+        case "multiply":
+          num2 = Integer.parseInt(inputParts[2]);
+          System.out.println(calculator.multiply(num1, num2));
+          break;
 
-      case "fibonacciNumberFinder":
-        System.out.println(fibonacciNumberFinder(num1));
-        break;
+        case "divide":
+          num2 = Integer.parseInt(inputParts[2]);
+          System.out.println(calculator.divide(num1, num2));
+          break;
 
-      case "intToBinaryNumber":
-        System.out.println(intToBinaryNumber(num1));
-        break;
+        case "fibonacciNumberFinder":
+          System.out.println(calculator.fibonacciNumberFinder(num1));
+          break;
 
-      default:
-        System.out.println("Unknown command");
+        case "intToBinaryNumber":
+          System.out.println(calculator.intToBinaryNumber(num1));
+          break;
+
+        default:
+          System.out.println("Unknown command");
+      }
     }
 
     scanner.close();
-  }
-
-  // Add method
-  static int add(int a, int b) {
-    return a + b;
-  }
-
-  // Subtract method
-  static int subtract(int a, int b) {
-    return a - b;
-  }
-
-  // Multiply method
-  static int multiply(int a, int b) {
-    return a * b;
-  }
-
-  // Divide method (assuming integer division)
-  static int divide(int a, int b) {
-    if (b == 0) {
-      throw new ArithmeticException("Cannot divide by zero");
-    }
-    return a / b;
-  }
-
-  // Fibonacci method
-  static int fibonacciNumberFinder(int n) {
-    if (n == 1 || n == 2) {
-      return 1;
-    }
-    int n1 = 1, n2 = 1, result = 0;
-    for (int i = 3; i <= n; i++) {
-      result = n1 + n2;
-      n1 = n2;
-      n2 = result;
-    }
-    return result;
-  }
-
-  // Convert integer to binary string
-  static String intToBinaryNumber(int number) {
-    if (number == 0) {
-      return "0";
-    }
-    StringBuilder binaryString = new StringBuilder();
-    while (number > 0) {
-      binaryString.append(number % 2);
-      number = number / 2;
-    }
-    return binaryString.reverse().toString();
   }
 }
