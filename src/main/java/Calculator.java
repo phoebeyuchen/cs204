@@ -87,6 +87,4 @@ class Calculator {
         return n + uniquePart;
 
     }
-
-    // comment for testing
 }
