@@ -6,10 +6,9 @@ public class Main {
     Scanner scanner = new Scanner(System.in);
     Calculator calculator = new Calculator();  // Create an instance of Calculator
     String input;
-
+    System.out.println("Enter a command (e.g., add 1 3) or type 'quit' to exit:");
     // Start an infinite loop until the user enters "quit"
     while (true) {
-      System.out.println("Enter a command (e.g., add 1 3) or type 'quit' to exit:");
       input = scanner.nextLine();
 
       // Check if the user wants to quit
@@ -44,11 +43,11 @@ public class Main {
           System.out.println(calculator.divide(num1, num2));
           break;
 
-        case "fibonacciNumberFinder":
+        case "fibonacci":
           System.out.println(calculator.fibonacciNumberFinder(num1));
           break;
 
-        case "intToBinaryNumber":
+        case "binary":
           System.out.println(calculator.intToBinaryNumber(num1));
           break;
 
